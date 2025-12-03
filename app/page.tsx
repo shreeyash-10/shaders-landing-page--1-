@@ -26,10 +26,12 @@ import {
   Waves,
 } from "lucide-react"
 import { ChromaFlow, Shader, Swirl } from "shaders/react"
+import { motion } from "framer-motion"
 
 import { CustomCursor } from "@/components/custom-cursor"
 import { GrainOverlay } from "@/components/grain-overlay"
 import { MagneticButton } from "@/components/magnetic-button"
+import { SlideTextButton, AppleActivityCard, LiquidGlass, WhatsappChatCard, InstagramCard } from "@/components/kokonut"
 
 const navItems = [
   { label: "Hero", index: 0 },
@@ -394,7 +396,12 @@ export default function Home() {
           {/* SECTION 1 — HERO */}
           <section className="flex min-h-[calc(100vh-24px)] w-screen shrink-0 items-center px-6 pb-14 pt-6 md:px-12">
             <div className="mx-auto grid w-full max-w-6xl gap-10 lg:grid-cols-[1.05fr,0.95fr] lg:items-center">
-              <div className="space-y-6">
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="space-y-6"
+              >
                 <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.16em] text-slate-100/80">
                   <Sparkles className="h-4 w-4 text-[#5fc1ff]" />
                   Velina AI — Launch Edition
@@ -413,10 +420,7 @@ export default function Home() {
                   <MagneticButton size="lg" variant="secondary" className="px-7">
                     Schedule a Demo
                   </MagneticButton>
-                  <div className="flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-slate-100/80">
-                    <ArrowRight className="h-4 w-4 text-[#5fc1ff]" />
-                    4-minute overview
-                  </div>
+                  <SlideTextButton label="4-minute overview" />
                 </div>
                 <div className="flex flex-wrap gap-3">
                   {[
@@ -433,9 +437,27 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-              </div>
+                <LiquidGlass>
+                  <div className="mb-3 flex items-center justify-between text-sm text-white/80">
+                    <span className="flex items-center gap-2">
+                      <Sparkles className="h-4 w-4 text-[#5fc1ff]" />
+                      Kokonut motion layer
+                    </span>
+                    <span className="rounded-full bg-black/20 px-2 py-1 text-[11px] text-white/80">Live preview</span>
+                  </div>
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    <AppleActivityCard title="Avg First Response" value="1.3s" />
+                    <AppleActivityCard title="CSAT" value="4.9 / 5" />
+                  </div>
+                </LiquidGlass>
+              </motion.div>
 
-              <div className="relative">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.65, ease: "easeOut", delay: 0.1 }}
+                className="relative"
+              >
                 <div className="absolute -left-6 -top-10 h-28 w-28 rounded-full bg-[#65d1ff]/15 blur-3xl" />
                 <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/5 via-white/5 to-[#1f4d96]/30 p-6 shadow-2xl shadow-sky-900/30 backdrop-blur">
                   <div className="flex items-center justify-between">
@@ -500,7 +522,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </section>
 
@@ -602,6 +624,9 @@ export default function Home() {
                     ))}
                   </div>
                 </div>
+                <div className="mt-4">
+                  <WhatsappChatCard />
+                </div>
               </div>
               <div className="flex flex-col justify-between gap-6">
                 <div className="grid grid-cols-2 gap-3">
@@ -641,6 +666,7 @@ export default function Home() {
                   Live engagement automation for DMs, comments, spam filtering, and sentiment-aware replies that keep
                   your community close.
                 </p>
+                <InstagramCard />
                 <div className="grid grid-cols-2 gap-3">
                   {socialFeatures.map((feature) => (
                     <div
